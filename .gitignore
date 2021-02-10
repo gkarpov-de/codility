@@ -1,0 +1,10 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+.idea
+.DS_Store
+__pycache__
+
+# Ignore Gradle build output directory
+build
+out
+
