@@ -1,14 +1,12 @@
 def solution(s):
     stack = list()
-    lbr = ['(', '[', '{']
-    rbr = [')', ']', '}']
     for c in s:
-        if c in lbr:
+        if c == '(':
             stack.append(c)
-            continue
-
-        if c in rbr:
-            if len(stack) == 0 or rbr.index(c) != lbr.index(stack.pop()):
+        elif c == ')':
+            if len(stack) == 0 or stack.pop() != '(':
                 return 0
 
     return 1 if len(stack) == 0 else 0
+
+print(solution("(()(())())"))
