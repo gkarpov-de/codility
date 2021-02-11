@@ -1,31 +1,19 @@
 def solution(H):
-    prevs = []
-    count = 0
-    for h in H:
-        if len(prevs) == 0:
-            prevs.append(h)
+    prevs = [H[0]]
+    count = 1
+
+    for i in range(1, len(H)):
+        h = H[i]
+        peek = prevs[-1]
+        if h < peek:
+            while len(prevs) > 0 and prevs[-1] >= h:
+                if prevs.pop() == h:
+                    count -= 1
+                    break
+
+        if h != peek:
             count += 1
-        else:
-            last_prev = prevs[-1]
-            if h < last_prev:
-                count += 1
-                while len(prevs) > 0:
-                    if prevs[-1] == h:
-                        count -= 1
-                        prevs.pop()
-                        break
-                    elif prevs[-1] < h:
-                        break
-                    else:
-                        prevs.pop()
-
-                prevs.append(h)
-            elif h == last_prev:
-                continue
-            elif h > last_prev:
-                count += 1
-                prevs.append(h)
-
+            prevs.append(h)
 
     return count
 
